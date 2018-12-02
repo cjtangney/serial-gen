@@ -3,16 +3,25 @@ import 'spectre.css';
 
 class Home extends React.Component {
   makeSerialNumbers = () => {
+    //get dom elements
     let output = document.getElementById('result');
     let voucherID = document.getElementById('voucher-id').value;
     let voucherType = document.getElementById('voucher-type').value;
     let quantity = document.getElementById('quantity').value;
+    let sliceString = '';
+    sliceString = sliceString.padEnd(quantity.length, "0");
+
+    //reset the output
+    output.value = '';
+
+    //setup final output string to determine max length
+    
     let result = '';
     for(let i = 0; i < quantity; i++){
-      result += voucherID + voucherType + i + ',\n';
+      result += voucherID + voucherType + (sliceString + i).slice(-(sliceString.length)) + ',\n';
     }
-    console.log(result);
     output.value = result;
+    
   }
   render() {
     return (
